@@ -9,4 +9,6 @@ class LayoutController extends GetxController {
     currentPageIndex = index;
     update();
   }
+
+  bool isMenuOpen = false;
 }

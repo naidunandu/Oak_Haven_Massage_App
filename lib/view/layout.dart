@@ -17,139 +17,150 @@ class LayoutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LayoutController>(
-        init: LayoutController(),
-        builder: (ctrl) {
-          return PopScope(
-            canPop: false,
-            child: Scaffold(
-              body: LazyIndexedStack(
-                index: ctrl.currentPageIndex,
-                children: const [
-                  HomeView(),
-                  FeedView(),
-                  ProfileView(),
-                ],
-              ),
-              bottomNavigationBar: BottomAppBar(
-                clipBehavior: Clip.antiAlias,
-                elevation: 100,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                height: 65,
-                shape: const CircularNotchedRectangle(),
-                notchMargin: 12,
-                color: CustomColors.background,
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    navBarItem(AppAssets.calendar, "Schedule", 0, ctrl, context),
-                    navBarItem(AppAssets.message, "Feed", 1, ctrl, context),
-                    navBarItem(AppAssets.profile, "Profile", 2, ctrl, context),
-                    navBarItem(AppAssets.moreSquare, "More", 3, ctrl, context),
+      init: LayoutController(),
+      builder: (ctrl) {
+        return PopScope(
+          canPop: false,
+          child: Scaffold(
+            body: Stack(
+              children: [
+                LazyIndexedStack(
+                  index: ctrl.currentPageIndex,
+                  children: const [
+                    HomeView(),
+                    FeedView(),
+                    ProfileView(),
                   ],
                 ),
-              ),
-            ),
-          );
-        });
-  }
 
-  // Method to show the bottom sheet
-  void _showBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent, // Make background transparent
-      isScrollControlled: true, // Allow scrolling content
-      builder: (BuildContext context) {
-        return Container(
-          margin: const EdgeInsets.only(bottom: 70, left: 80),
-          padding: const EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-            color: CustomColors.link, // Semi-transparent background
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
+                //Show Menu on Toggle More Button
+                if (ctrl.isMenuOpen)
+                  GestureDetector(
+                    onTap: () {
+                      ctrl.isMenuOpen = false;
+                      ctrl.update();
+                    },
+                    child: ModalBarrier(
+                      dismissible: true,
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ),
+                if (ctrl.isMenuOpen)
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 80),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      decoration: const BoxDecoration(
+                        color: CustomColors.link, // Semi-transparent background
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ListTile(
+                            title: const Text(
+                              'Feedback',
+                              style: TextStyle(
+                                color: CustomColors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            onTap: () {
+                              // Handle settings action
+                              Get.toNamed(RouteNames.feedback);
+                            },
+                          ),
+                          const DashedDivider(color: CustomColors.white),
+                          ListTile(
+                            title: const Text(
+                              'Maintenance/Equipment Request',
+                              style: TextStyle(
+                                color: CustomColors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            onTap: () {
+                              // Handle help action
+                            },
+                          ),
+                          const DashedDivider(color: CustomColors.white),
+                          ListTile(
+                            title: const Text(
+                              'PTO Request',
+                              style: TextStyle(
+                                color: CustomColors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            onTap: () {
+                              // Handle logout action
+                            },
+                          ),
+                          const DashedDivider(color: CustomColors.white),
+                          ListTile(
+                            title: const Text(
+                              'Loan/Payroll Advance Request',
+                              style: TextStyle(
+                                color: CustomColors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            onTap: () {
+                              // Handle logout action
+                            },
+                          ),
+                          const DashedDivider(color: CustomColors.white),
+                          ListTile(
+                            title: const Text(
+                              'Payroll & Benefits Questions',
+                              style: TextStyle(
+                                color: CustomColors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            onTap: () {
+                              // Handle logout action
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              ],
             ),
-          ),
-          child: Column(
-            crossAxisAlignment:CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                title: const Text(
-                  'Feedback',
-                  style: TextStyle(
-                    color: CustomColors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1,
-                  ),
-                ),
-                onTap: () {
-                  // Handle settings action
-                  Get.toNamed(RouteNames.feedback);
-                },
+            bottomNavigationBar: BottomAppBar(
+              clipBehavior: Clip.antiAlias,
+              elevation: 100,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              height: 65,
+              shape: const CircularNotchedRectangle(),
+              notchMargin: 12,
+              color: CustomColors.background,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  navBarItem(AppAssets.calendar, "Schedule", 0, ctrl, context),
+                  navBarItem(AppAssets.message, "Feed", 1, ctrl, context),
+                  navBarItem(AppAssets.profile, "Profile", 2, ctrl, context),
+                  navBarItem(AppAssets.moreSquare, "More", 3, ctrl, context),
+                ],
               ),
-              const DashedDivider(color: CustomColors.white),
-              ListTile(
-                title: const Text(
-                  'Maintenance/Equipment Request',
-                  style: TextStyle(
-                    color: CustomColors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1,
-                  ),
-                ),
-                onTap: () {
-                  // Handle help action
-                },
-              ),
-              const DashedDivider(color: CustomColors.white),
-              ListTile(
-                title: const Text(
-                  'PTO Request',
-                  style: TextStyle(
-                    color: CustomColors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1,
-                  ),
-                ),
-                onTap: () {
-                  // Handle logout action
-                },
-              ),
-              const DashedDivider(color: CustomColors.white),
-              ListTile(
-                title: const Text(
-                  'Loan/Payroll Advance Request',
-                  style: TextStyle(
-                    color: CustomColors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1,
-                  ),
-                ),
-                onTap: () {
-                  // Handle logout action
-                },
-              ),
-              const DashedDivider(color: CustomColors.white),
-              ListTile(
-                title: const Text(
-                  'Payroll & Benefits Questions',
-                  style: TextStyle(
-                    color: CustomColors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1,
-                  ),
-                ),
-                onTap: () {
-                  // Handle logout action
-                },
-              ),
-            ],
+            ),
           ),
         );
       },
@@ -164,7 +175,8 @@ class LayoutView extends StatelessWidget {
         if (index >= 0 && index <= 2) {
           ctrl.updatePageIndex(index);
         } else {
-          _showBottomSheet(context);
+          ctrl.isMenuOpen = !ctrl.isMenuOpen;
+          ctrl.update();
         }
       },
       child: Column(
