@@ -35,15 +35,13 @@ class LayoutView extends StatelessWidget {
 
                 //Show Menu on Toggle More Button
                 if (ctrl.isMenuOpen)
-                  GestureDetector(
-                    onTap: () {
+                  ModalBarrier(
+                    dismissible: true,
+                    color: Colors.black.withOpacity(0.5),
+                    onDismiss: (){
                       ctrl.isMenuOpen = false;
                       ctrl.update();
                     },
-                    child: ModalBarrier(
-                      dismissible: true,
-                      color: Colors.black.withOpacity(0.5),
-                    ),
                   ),
                 if (ctrl.isMenuOpen)
                   Align(
