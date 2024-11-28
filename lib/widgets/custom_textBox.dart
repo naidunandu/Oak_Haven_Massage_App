@@ -72,10 +72,10 @@ class _CustomTextBoxState extends State<CustomTextBox> {
       children: [
         if (widget.fieldName != null)
           Padding(
-            padding: const EdgeInsets.only(left: 10, bottom: 5),
+            padding: const EdgeInsets.only(bottom: 8),
             child: Text(
               widget.fieldName ?? '',
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600,color: CustomColors.primary),
             ),
           ),
         TextFormField(

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:oak_haven_massage_app/routes/route_name.dart';
+import 'package:oak_haven_massage_app/view/more/feedback.dart';
 import 'package:oak_haven_massage_app/view/otp.dart';
 
 import '../view/layout.dart';
@@ -29,5 +30,6 @@ class AppRoutes {
     getPage(name: RouteNames.login, page: () => const LoginView()),
     getPage(name: RouteNames.otp, page: () => const OtpView()),
     getPage(name: RouteNames.layout, page: () => const LayoutView()),
+    getPage(name: RouteNames.feedback, page: () => const FeedbackView()),
   ];
 }

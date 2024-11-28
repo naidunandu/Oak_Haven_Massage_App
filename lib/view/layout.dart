@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lazy_indexed_stack/flutter_lazy_indexed_stack.dart';
 import 'package:get/get.dart';
+import 'package:oak_haven_massage_app/routes/route_name.dart';
 import 'package:oak_haven_massage_app/utils/app_theme.dart';
 import 'package:oak_haven_massage_app/view/feed.dart';
 import 'package:oak_haven_massage_app/view/home.dart';
 import 'package:oak_haven_massage_app/view/profile.dart';
+import 'package:oak_haven_massage_app/widgets/dashed_divider.dart';
 
 import '../controllers/layout_controller.dart';
 import '../utils/app_assets.dart';
 
-class LayoutView extends StatefulWidget {
+class LayoutView extends StatelessWidget {
   const LayoutView({super.key});
-
-  @override
-  _LayoutViewState createState() => _LayoutViewState();
-}
-
-class _LayoutViewState extends State<LayoutView> {
-  final bool _isMenuOpen = true; // Track the state of the menu
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +24,10 @@ class _LayoutViewState extends State<LayoutView> {
             child: Scaffold(
               body: LazyIndexedStack(
                 index: ctrl.currentPageIndex,
-                children: [
-                  const HomeView(),
-                  const FeedView(),
-                  const ProfileView(),
-                  moreMenu(context),
+                children: const [
+                  HomeView(),
+                  FeedView(),
+                  ProfileView(),
                 ],
               ),
               bottomNavigationBar: BottomAppBar(
@@ -60,11 +54,118 @@ class _LayoutViewState extends State<LayoutView> {
         });
   }
 
+  // Method to show the bottom sheet
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent, // Make background transparent
+      isScrollControlled: true, // Allow scrolling content
+      builder: (BuildContext context) {
+        return Container(
+          margin: const EdgeInsets.only(bottom: 70, left: 80),
+          padding: const EdgeInsets.all(16),
+          decoration: const BoxDecoration(
+            color: CustomColors.link, // Semi-transparent background
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment:CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text(
+                  'Feedback',
+                  style: TextStyle(
+                    color: CustomColors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1,
+                  ),
+                ),
+                onTap: () {
+                  // Handle settings action
+                  Get.toNamed(RouteNames.feedback);
+                },
+              ),
+              const DashedDivider(color: CustomColors.white),
+              ListTile(
+                title: const Text(
+                  'Maintenance/Equipment Request',
+                  style: TextStyle(
+                    color: CustomColors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1,
+                  ),
+                ),
+                onTap: () {
+                  // Handle help action
+                },
+              ),
+              const DashedDivider(color: CustomColors.white),
+              ListTile(
+                title: const Text(
+                  'PTO Request',
+                  style: TextStyle(
+                    color: CustomColors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1,
+                  ),
+                ),
+                onTap: () {
+                  // Handle logout action
+                },
+              ),
+              const DashedDivider(color: CustomColors.white),
+              ListTile(
+                title: const Text(
+                  'Loan/Payroll Advance Request',
+                  style: TextStyle(
+                    color: CustomColors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1,
+                  ),
+                ),
+                onTap: () {
+                  // Handle logout action
+                },
+              ),
+              const DashedDivider(color: CustomColors.white),
+              ListTile(
+                title: const Text(
+                  'Payroll & Benefits Questions',
+                  style: TextStyle(
+                    color: CustomColors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1,
+                  ),
+                ),
+                onTap: () {
+                  // Handle logout action
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   Widget navBarItem(String image, String label, int index, LayoutController ctrl, context) {
     Color color = ctrl.currentPageIndex == index ? CustomColors.primary : CustomColors.border;
     return GestureDetector(
-      onTap: () => {
-        ctrl.updatePageIndex(index, context),
+      onTap: () {
+        // Only update if the index is within valid bounds
+        if (index >= 0 && index <= 2) {
+          ctrl.updatePageIndex(index);
+        } else {
+          _showBottomSheet(context);
+        }
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -78,56 +179,6 @@ class _LayoutViewState extends State<LayoutView> {
             style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.w500),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget moreMenu(context) {
-    return Positioned(
-      bottom: 10,
-      right: 10,
-      child: AnimatedOpacity(
-        opacity: _isMenuOpen ? 1.0 : 0.0, // Control opacity based on menu state
-        duration: const Duration(milliseconds: 300),
-        child: AnimatedPositioned(
-          duration: const Duration(milliseconds: 300),
-          bottom: _isMenuOpen ? 10 : -150, // Adjust position to make it appear/disappear
-          right: 10,
-          child: Container(
-            width: 120, // Menu width
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.5), // Transparent black background
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 8,
-                  offset: Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Column(
-              children: [
-                // Menu items
-                ListTile(
-                  leading: const Icon(Icons.settings, color: Colors.white),
-                  title: const Text('Settings', style: TextStyle(color: Colors.black)),
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: const Icon(Icons.help, color: Colors.white),
-                  title: const Text('Help', style: TextStyle(color: Colors.white)),
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: const Icon(Icons.logout, color: Colors.white),
-                  title: const Text('Logout', style: TextStyle(color: Colors.white)),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-        ),
       ),
     );
   }

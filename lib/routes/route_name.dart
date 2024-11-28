@@ -4,4 +4,5 @@ class RouteNames {
   static const login = '/login';
   static const otp = '/otp';
   static const layout = '/layout';
+  static const feedback = '/feedback';
 }
