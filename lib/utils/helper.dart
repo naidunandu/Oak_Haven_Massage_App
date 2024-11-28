@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui' as ui;
 
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -299,5 +300,33 @@ class Helper {
 
   String timesStringConvert(String value) {
     return getFormattedDateTimer(DateTime.fromMillisecondsSinceEpoch(int.parse(value)).toString());
+  }
+
+  singleDatePicker(bool isRevers) {
+    DateTime firstDate = DateTime.now().subtract(Duration(days: isRevers == true ? 365 : -1, minutes: 0));
+    var config = CalendarDatePicker2WithActionButtonsConfig(
+      calendarType: CalendarDatePicker2Type.single,
+      calendarViewMode: CalendarDatePicker2Mode.day,
+      centerAlignModePicker: true,
+      animateToDisplayedMonthDate: true,
+      useAbbrLabelForMonthModePicker: true,
+      firstDate: firstDate,
+      selectableDayPredicate: (day) => isRevers == true
+          ? day.difference(DateTime.now().subtract(const Duration(days: 0, minutes: 0))).isNegative
+          : !day.difference(DateTime.now().subtract(const Duration(days: 1, minutes: 0))).isNegative,
+    );
+    List<DateTime?> selectedDate = [];
+    return CalendarDatePicker2WithActionButtons(
+      config: config,
+      value: [DateTime.now()],
+      onValueChanged: (values) async {
+        selectedDate = values;
+        var date = '${selectedDate[0]!.year}-${selectedDate[0]!.month.toString().padLeft(2, '0')}-${selectedDate[0]!.day.toString().padLeft(2, '0')}';
+        Get.back(result: date);
+      },
+      onCancelTapped: () {
+        Get.back();
+      },
+    );
   }
 }

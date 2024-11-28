@@ -48,6 +48,7 @@ dependencies:
   pin_code_fields: ^8.0.1
   flutter_lazy_indexed_stack: ^0.0.6
   syncfusion_flutter_calendar: ^27.2.4
+  calendar_date_picker2: ^1.1.7
 
 dev_dependencies:
   flutter_test:

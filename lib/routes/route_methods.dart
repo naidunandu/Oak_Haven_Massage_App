@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
 import 'package:oak_haven_massage_app/routes/route_name.dart';
-import 'package:oak_haven_massage_app/view/more/feedback.dart';
-import 'package:oak_haven_massage_app/view/otp.dart';
 
 import '../view/layout.dart';
 import '../view/login.dart';
+import '../view/more/feedback.dart';
+import '../view/more/loan.dart';
+import '../view/more/maintenance.dart';
+import '../view/more/pto_request.dart';
+import '../view/otp.dart';
 import '../view/splash.dart';
 import '../view/home.dart';
 
@@ -31,5 +34,8 @@ class AppRoutes {
     getPage(name: RouteNames.otp, page: () => const OtpView()),
     getPage(name: RouteNames.layout, page: () => const LayoutView()),
     getPage(name: RouteNames.feedback, page: () => const FeedbackView()),
+    getPage(name: RouteNames.maintenance, page: () => const MaintenanceView()),
+    getPage(name: RouteNames.pTORequest, page: () => const PTORequestView()),
+    getPage(name: RouteNames.loan, page: () => const LoanView()),
   ];
 }

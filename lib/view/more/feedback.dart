@@ -14,7 +14,7 @@ class FeedbackView extends StatelessWidget {
         elevation: 1.0,
         title: const Text(
           "Feedback",
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: CustomColors.primary),
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: CustomColors.primary),
         ),
       ),
       body: SingleChildScrollView(
@@ -25,8 +25,6 @@ class FeedbackView extends StatelessWidget {
             children: [
               CustomTextBox(
                 fieldName: "Name:",
-                // focusNode: ctrl.txtEmailFocus,
-                // controller: ctrl.txtEmail,
                 hintText: "Name",
                 keyboardType: TextInputType.text,
                 autofillHints: const [AutofillHints.name],
@@ -39,8 +37,6 @@ class FeedbackView extends StatelessWidget {
               ).paddingOnly(bottom: 14),
               CustomTextBox(
                 fieldName: "Suggestion:",
-                // focusNode: ctrl.txtEmailFocus,
-                // controller: ctrl.txtEmail,
                 hintText: "Type the suggestion here...",
                 maxLines: 10,
                 keyboardType: TextInputType.text,
