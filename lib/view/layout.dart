@@ -87,6 +87,7 @@ class LayoutView extends StatelessWidget {
                             ),
                             onTap: () {
                               // Handle help action
+                              Get.toNamed(RouteNames.maintenance);
                             },
                           ),
                           const DashedDivider(color: CustomColors.white),
@@ -102,6 +103,7 @@ class LayoutView extends StatelessWidget {
                             ),
                             onTap: () {
                               // Handle logout action
+                              Get.toNamed(RouteNames.pTORequest);
                             },
                           ),
                           const DashedDivider(color: CustomColors.white),
@@ -117,6 +119,7 @@ class LayoutView extends StatelessWidget {
                             ),
                             onTap: () {
                               // Handle logout action
+                              Get.toNamed(RouteNames.loan);
                             },
                           ),
                           const DashedDivider(color: CustomColors.white),
@@ -132,6 +135,7 @@ class LayoutView extends StatelessWidget {
                             ),
                             onTap: () {
                               // Handle logout action
+                              Get.toNamed(RouteNames.feedback);
                             },
                           ),
                         ],
@@ -166,11 +170,12 @@ class LayoutView extends StatelessWidget {
   }
 
   Widget navBarItem(String image, String label, int index, LayoutController ctrl, context) {
-    Color color = ctrl.currentPageIndex == index ? CustomColors.primary : CustomColors.border;
+    Color color = (!ctrl.isMenuOpen && ctrl.currentPageIndex == index) || (ctrl.isMenuOpen && index == 3 ) ? CustomColors.primary : CustomColors.border;
     return GestureDetector(
       onTap: () {
         // Only update if the index is within valid bounds
         if (index >= 0 && index <= 2) {
+          ctrl.isMenuOpen = false;
           ctrl.updatePageIndex(index);
         } else {
           ctrl.isMenuOpen = !ctrl.isMenuOpen;
