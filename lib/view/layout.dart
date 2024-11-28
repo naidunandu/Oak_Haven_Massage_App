@@ -38,7 +38,7 @@ class LayoutView extends StatelessWidget {
                   ModalBarrier(
                     dismissible: true,
                     color: Colors.black.withOpacity(0.5),
-                    onDismiss: (){
+                    onDismiss: () {
                       ctrl.isMenuOpen = false;
                       ctrl.update();
                     },
@@ -156,10 +156,10 @@ class LayoutView extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  navBarItem(AppAssets.calendar, "Schedule", 0, ctrl, context),
-                  navBarItem(AppAssets.message, "Feed", 1, ctrl, context),
-                  navBarItem(AppAssets.profile, "Profile", 2, ctrl, context),
-                  navBarItem(AppAssets.moreSquare, "More", 3, ctrl, context),
+                  navBarItem(ctrl.currentPageIndex == 0 ? AppAssets.calendarPrimary : AppAssets.calendar, "Schedule", 0, ctrl, context),
+                  navBarItem(ctrl.currentPageIndex == 1 ? AppAssets.messagePrimary : AppAssets.message, "Feed", 1, ctrl, context),
+                  navBarItem(ctrl.currentPageIndex == 2 ? AppAssets.profilePrimary : AppAssets.profile, "Profile", 2, ctrl, context),
+                  navBarItem(ctrl.isMenuOpen ? AppAssets.moreSquarePrimary : AppAssets.moreSquare, "More", 3, ctrl, context),
                 ],
               ),
             ),
@@ -170,7 +170,8 @@ class LayoutView extends StatelessWidget {
   }
 
   Widget navBarItem(String image, String label, int index, LayoutController ctrl, context) {
-    Color color = (!ctrl.isMenuOpen && ctrl.currentPageIndex == index) || (ctrl.isMenuOpen && index == 3 ) ? CustomColors.primary : CustomColors.border;
+    Color color =
+        (!ctrl.isMenuOpen && ctrl.currentPageIndex == index) || (ctrl.isMenuOpen && index == 3) ? CustomColors.primary : CustomColors.secondary;
     return GestureDetector(
       onTap: () {
         // Only update if the index is within valid bounds
@@ -187,7 +188,6 @@ class LayoutView extends StatelessWidget {
         children: <Widget>[
           Image.asset(
             image,
-            color: color,
           ).paddingOnly(bottom: 5),
           Text(
             label,

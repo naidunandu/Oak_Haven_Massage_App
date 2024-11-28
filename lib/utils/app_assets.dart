@@ -10,4 +10,8 @@ class AppAssets {
   static const String message = "assets/layout/message.png";
   static const String profile = "assets/layout/profile.png";
   static const String moreSquare = "assets/layout/more-square.png";
+  static const String calendarPrimary = "assets/layout/calendar-primary.png";
+  static const String messagePrimary = "assets/layout/message-primary.png";
+  static const String profilePrimary = "assets/layout/profile-primary.png";
+  static const String moreSquarePrimary = "assets/layout/more-square-primary.png";
 }
