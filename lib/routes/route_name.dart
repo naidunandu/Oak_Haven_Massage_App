@@ -9,4 +9,6 @@ class RouteNames {
   static const maintenance = '/maintenance';
   static const pTORequest = '/pTORequest';
   static const loan = '/loan';
+  static const payroll = '/payroll';
+  static const createPost = '/createPost';
 }

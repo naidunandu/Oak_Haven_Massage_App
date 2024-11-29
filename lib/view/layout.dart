@@ -3,7 +3,7 @@ import 'package:flutter_lazy_indexed_stack/flutter_lazy_indexed_stack.dart';
 import 'package:get/get.dart';
 import 'package:oak_haven_massage_app/routes/route_name.dart';
 import 'package:oak_haven_massage_app/utils/app_theme.dart';
-import 'package:oak_haven_massage_app/view/feed.dart';
+import 'package:oak_haven_massage_app/view/feed/feed.dart';
 import 'package:oak_haven_massage_app/view/home.dart';
 import 'package:oak_haven_massage_app/view/profile.dart';
 import 'package:oak_haven_massage_app/widgets/dashed_divider.dart';
@@ -135,7 +135,7 @@ class LayoutView extends StatelessWidget {
                             ),
                             onTap: () {
                               // Handle logout action
-                              Get.toNamed(RouteNames.feedback);
+                              Get.toNamed(RouteNames.payroll);
                             },
                           ),
                         ],
@@ -156,9 +156,12 @@ class LayoutView extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  navBarItem(ctrl.currentPageIndex == 0 ? AppAssets.calendarPrimary : AppAssets.calendar, "Schedule", 0, ctrl, context),
-                  navBarItem(ctrl.currentPageIndex == 1 ? AppAssets.messagePrimary : AppAssets.message, "Feed", 1, ctrl, context),
-                  navBarItem(ctrl.currentPageIndex == 2 ? AppAssets.profilePrimary : AppAssets.profile, "Profile", 2, ctrl, context),
+                  navBarItem((!ctrl.isMenuOpen && ctrl.currentPageIndex == 0) ? AppAssets.calendarPrimary : AppAssets.calendar, "Schedule", 0, ctrl,
+                      context),
+                  navBarItem(
+                      (!ctrl.isMenuOpen && ctrl.currentPageIndex == 1) ? AppAssets.messagePrimary : AppAssets.message, "Feed", 1, ctrl, context),
+                  navBarItem(
+                      (!ctrl.isMenuOpen && ctrl.currentPageIndex == 2) ? AppAssets.profilePrimary : AppAssets.profile, "Profile", 2, ctrl, context),
                   navBarItem(ctrl.isMenuOpen ? AppAssets.moreSquarePrimary : AppAssets.moreSquare, "More", 3, ctrl, context),
                 ],
               ),
