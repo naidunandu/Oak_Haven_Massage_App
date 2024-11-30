@@ -33,6 +33,7 @@ class LoanView extends StatelessWidget {
                       fieldName: "Loan Details:",
                       hintText: "Loan Details",
                       keyboardType: TextInputType.text,
+                      maxLines: 3,
                       validator: (val) {
                         if (val == null || val.isEmpty) {
                           return 'Please enter loan details';
@@ -101,7 +102,7 @@ class LoanView extends StatelessWidget {
                     ).paddingOnly(bottom: 14),
                     CustomTextBox(
                       fieldName: "Primary Bank Account:",
-                      hintText: "0",
+                      hintText: "1234 1234 1234 1234",
                       keyboardType: TextInputType.text,
                       validator: (val) {
                         if (val == null || val.isEmpty) {
@@ -111,7 +112,7 @@ class LoanView extends StatelessWidget {
                       },
                     ).paddingOnly(bottom: 14),
                     const Text(
-                      "Repayment Schedule:",
+                      "Payment Type:",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
