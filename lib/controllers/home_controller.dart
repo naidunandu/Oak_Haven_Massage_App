@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:oak_haven_massage_app/models/position.dart';
 import 'package:oak_haven_massage_app/utils/toast.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../utils/constants.dart';
 import '../utils/storage.dart';
@@ -14,9 +15,37 @@ import 'dart:ui' as ui;
 class HomeController extends GetxController {
   @override
   void onInit() {
-    loadImages();
-    onLoadEvent();
+    // loadImages();
+    // onLoadEvent();
     super.onInit();
+  }
+
+  DateTime currentDate = DateTime.now();
+
+
+  CalendarDataSource getCalendarData() {
+    List<Appointment> appointments = <Appointment>[];
+
+    final DateTime today = DateTime.now();
+    final DateTime tomorrow = today.add(const Duration(days: 1));
+
+    appointments.add(Appointment(
+      startTime: today,
+      endTime: today.add(const Duration(hours: 1)),
+      subject: 'John Branch',
+      notes: '50 Min Massage',
+      color: const Color(0xFF7FA0BF),
+    ));
+
+    appointments.add(Appointment(
+      startTime: today.add(const Duration(hours: 2)),
+      endTime: today.add(const Duration(hours: 4)),
+      subject: 'Caitlin Pruitt',
+      notes: 'Tier Three | 80 Min',
+      color: const Color(0xFF7FB17E),
+    ));
+
+    return AppointmentDataSource(appointments);
   }
 
   List<PositionedModel> circleObjects = [];
@@ -131,5 +160,11 @@ class HomeController extends GetxController {
       circleObjects = localCircleObjects.map((e) => PositionedModel.fromMap(e)).toList();
       update();
     }
+  }
+}
+
+class AppointmentDataSource extends CalendarDataSource {
+  AppointmentDataSource(List<Appointment> source) {
+    appointments = source;
   }
 }

@@ -36,9 +36,9 @@ class _RoundedButtonState extends State<RoundedButton> {
       disabledColor: Colors.grey,
       color: widget.color ?? CustomColors.primary,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(widget.borderRadius ?? 5.0),
+        borderRadius: BorderRadius.circular(widget.borderRadius ?? 14.0),
       ),
-      padding: widget.padding ?? const EdgeInsets.symmetric(vertical: 15),
+      padding: widget.padding ?? const EdgeInsets.symmetric(vertical: 18),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

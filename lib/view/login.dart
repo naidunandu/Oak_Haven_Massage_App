@@ -64,7 +64,8 @@ class _LoginViewState extends State<LoginView> {
                     },
                   ).paddingOnly(bottom: 30),
                   RoundedButton(
-                    borderRadius: 10.0,
+                    borderRadius: 14.0,
+                    padding: const EdgeInsets.symmetric(vertical: 18),
                     text: "Send OTP",
                     isLoading: ctrl.isLoading,
                     onTap: () => ctrl.signIn(),

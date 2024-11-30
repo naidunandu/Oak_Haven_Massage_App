@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       builder: (BuildContext context, widget) {
         return MediaQuery(
-          data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
+          data: MediaQuery.of(context).copyWith(
+            textScaler: const TextScaler.linear(1.0),
+          ),
           child: widget!,
         );
       },

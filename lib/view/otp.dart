@@ -23,7 +23,7 @@ class _OtpViewState extends State<OtpView> {
           body: SafeArea(
             child: ListView(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 4 / 100,
+                top: MediaQuery.of(context).size.height * 2 / 100,
                 left: 22,
                 right: 22,
                 bottom: 10,
@@ -79,7 +79,6 @@ class _OtpViewState extends State<OtpView> {
                   enableActiveFill: true,
                 ).paddingOnly(bottom: 30),
                 RoundedButton(
-                  borderRadius: 10.0,
                   text: "Verify",
                   isLoading: ctrl.isLoading,
                   loadingText: "loading....",
