@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
-import '../utils/helper.dart';
+import '../../utils/helper.dart';
 
 class LoanController extends GetxController {
   String repaymentSchedule = '';

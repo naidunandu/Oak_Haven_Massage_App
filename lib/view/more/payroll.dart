@@ -1,7 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:oak_haven_massage_app/controllers/payroll_controller.dart';
+import 'package:oak_haven_massage_app/controllers/more/payroll_controller.dart';
 import 'package:oak_haven_massage_app/utils/app_assets.dart';
 import 'package:oak_haven_massage_app/utils/app_theme.dart';
 import 'package:oak_haven_massage_app/widgets/custom_textBox.dart';

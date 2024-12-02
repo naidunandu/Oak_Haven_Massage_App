@@ -4,7 +4,7 @@ import 'package:oak_haven_massage_app/utils/app_theme.dart';
 import 'package:oak_haven_massage_app/widgets/custom_textBox.dart';
 import 'package:oak_haven_massage_app/widgets/rounded_button.dart';
 
-import '../../controllers/loan_controller.dart';
+import '../../controllers/more/loan_controller.dart';
 
 class LoanView extends StatelessWidget {
   const LoanView({super.key});

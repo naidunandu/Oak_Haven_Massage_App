@@ -10,6 +10,20 @@ class AppAssets {
   static const String img = "assets/img.png";
   static const String happyEmoji = "assets/happy-emoji.png";
   static const String gif = "assets/gif.png";
+  static const String bodyImg = "assets/body-img.png";
+  static const String gifGrey = "assets/gif-grey.png";
+  static const String happyEmojiGrey = "assets/happy-emoji-grey.png";
+  static const String imgGrey = "assets/img-grey.png";
+  static const String like = "assets/like.png";
+  static const String heart = "assets/heart.png";
+  static const String messageEdit = "assets/message-edit.png";
+  static const String messageSquareText = "assets/message-square-text.png";
+  static const String comment = "assets/comment.png";
+
+
+  //post
+  static const String img1 = "assets/post/img.png";
+  static const String img2 = "assets/post/img_1.png";
 
   //layout
   static const String calendar = "assets/layout/calendar.png";

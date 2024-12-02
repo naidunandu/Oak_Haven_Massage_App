@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:oak_haven_massage_app/controllers/maintenance_controller.dart';
+import 'package:oak_haven_massage_app/controllers/more/maintenance_controller.dart';
 import 'package:oak_haven_massage_app/utils/app_theme.dart';
 import 'package:oak_haven_massage_app/widgets/custom_textBox.dart';
 import 'package:oak_haven_massage_app/widgets/rounded_button.dart';

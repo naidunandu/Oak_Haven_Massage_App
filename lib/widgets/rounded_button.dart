@@ -66,7 +66,7 @@ class _RoundedButtonState extends State<RoundedButton> {
           if (widget.isLoading == true)
             Text(
               widget.loadingText.toString(),
-              style: TextStyle(color: _getColor(), letterSpacing: 1),
+              style: TextStyle(color: _getColor(), letterSpacing: 1,fontSize: 14,fontWeight: FontWeight.w500),
             ).paddingOnly(right: 10),
           const SizedBox(
             height: 18,

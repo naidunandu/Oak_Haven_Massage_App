@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:oak_haven_massage_app/routes/route_name.dart';
 import 'package:oak_haven_massage_app/utils/app_theme.dart';
 import 'package:oak_haven_massage_app/view/feed/feed.dart';
-import 'package:oak_haven_massage_app/view/home.dart';
+import 'package:oak_haven_massage_app/view/home/home.dart';
 import 'package:oak_haven_massage_app/view/profile.dart';
 import 'package:oak_haven_massage_app/widgets/dashed_divider.dart';
 
@@ -136,6 +136,22 @@ class LayoutView extends StatelessWidget {
                             onTap: () {
                               // Handle logout action
                               Get.toNamed(RouteNames.payroll);
+                            },
+                          ),
+                          const DashedDivider(color: CustomColors.white),
+                          ListTile(
+                            title: const Text(
+                              'Future Schedule Change Request',
+                              style: TextStyle(
+                                color: CustomColors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            onTap: () {
+                              // Handle logout action
+                              Get.toNamed(RouteNames.scheduleChangeRequest);
                             },
                           ),
                         ],

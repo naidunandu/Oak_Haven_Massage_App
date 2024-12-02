@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:oak_haven_massage_app/controllers/home_controller.dart';
+import 'package:oak_haven_massage_app/controllers/home/home_controller.dart';
 import 'package:oak_haven_massage_app/utils/app_theme.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-import '../widgets/timeline_widget.dart';
+import '../../routes/route_name.dart';
+import '../../widgets/timeline_widget.dart';
 
 /// The hove page which hosts the calendar
 class HomeView extends StatefulWidget {
@@ -68,18 +69,21 @@ class _HomeViewState extends State<HomeView> {
                           ),
                         ),
                       ),
-                      const Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'Month',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                            ),
-                            Icon(Icons.keyboard_arrow_down_rounded)
-                          ],
+                      Expanded(
+                        child: InkWell(
+                          onTap: () => Get.toNamed(RouteNames.treatmentNote),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Month',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                              ),
+                              Icon(Icons.keyboard_arrow_down_rounded)
+                            ],
+                          ),
                         ),
                       )
                     ],

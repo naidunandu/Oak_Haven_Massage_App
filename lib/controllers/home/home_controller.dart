@@ -8,18 +8,11 @@ import 'package:oak_haven_massage_app/models/position.dart';
 import 'package:oak_haven_massage_app/utils/toast.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-import '../utils/constants.dart';
-import '../utils/storage.dart';
+import '../../utils/constants.dart';
+import '../../utils/storage.dart';
 import 'dart:ui' as ui;
 
 class HomeController extends GetxController {
-  @override
-  void onInit() {
-    // loadImages();
-    // onLoadEvent();
-    super.onInit();
-  }
-
   DateTime currentDate = DateTime.now();
 
 
@@ -27,7 +20,6 @@ class HomeController extends GetxController {
     List<Appointment> appointments = <Appointment>[];
 
     final DateTime today = DateTime.now();
-    final DateTime tomorrow = today.add(const Duration(days: 1));
 
     appointments.add(Appointment(
       startTime: today,
