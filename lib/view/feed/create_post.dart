@@ -87,7 +87,7 @@ class CreatePostView extends StatelessWidget {
                     ],
                   ),
                   CustomTextBox(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(14),
                     hintText: "What’s on your mind?",
                     maxLines: 15,
                     keyboardType: TextInputType.text,

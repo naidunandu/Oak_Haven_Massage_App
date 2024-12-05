@@ -54,6 +54,7 @@ class PayRollView extends StatelessWidget {
                       radius: const Radius.circular(20),
                       color: Colors.grey,
                       child: Container(
+                          color: CustomColors.background,
                           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                           width: MediaQuery.of(context).size.width,
                           child: GestureDetector(
@@ -61,7 +62,7 @@ class PayRollView extends StatelessWidget {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Image.asset(AppAssets.uploadDocument).paddingOnly(bottom: 9, top: 19),
+                                Image.asset(AppAssets.uploadDocument).paddingOnly(bottom: 10, top: 19),
                                 RichText(
                                   text: const TextSpan(
                                     text: "Click here ",
@@ -102,14 +103,14 @@ class PayRollView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   if (file['progress'] == 1.0)
-                                  Text(
-                                    '${(file['size'] / 1024).toStringAsFixed(2)} KB',
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: CustomColors.secondary,
+                                    Text(
+                                      '${(file['size'] / 1024).toStringAsFixed(2)} KB',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: CustomColors.secondary,
+                                      ),
                                     ),
-                                  ),
                                   if (file['progress'] != 1.0)
                                     LinearProgressIndicator(
                                       value: file['progress'],

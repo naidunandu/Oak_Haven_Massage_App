@@ -75,7 +75,7 @@ class _CustomTextBoxState extends State<CustomTextBox> {
             padding: const EdgeInsets.only(bottom: 8),
             child: Text(
               widget.fieldName ?? '',
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600,color: CustomColors.primary),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: CustomColors.primary),
             ),
           ),
         TextFormField(
@@ -103,7 +103,7 @@ class _CustomTextBoxState extends State<CustomTextBox> {
             prefixIcon: widget.prefixIcon,
             suffixIcon: widget.suffixIcon,
             enabledBorder: OutlineInputBorder(
-              borderSide:  const BorderSide(
+              borderSide: const BorderSide(
                 width: 1,
                 color: CustomColors.border,
               ),
@@ -131,9 +131,9 @@ class _CustomTextBoxState extends State<CustomTextBox> {
               ),
               borderRadius: widget.borderRadius ?? BorderRadius.circular(14.0),
             ),
-            fillColor: widget.fillColor ??  CustomColors.placeholder,
+            fillColor: widget.fillColor ?? CustomColors.placeholder,
             filled: true,
-            contentPadding: widget.contentPadding ?? const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
+            contentPadding: widget.contentPadding ?? const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
           ),
           style: const TextStyle(fontSize: 15),
         ),

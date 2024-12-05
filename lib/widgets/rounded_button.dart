@@ -38,7 +38,7 @@ class _RoundedButtonState extends State<RoundedButton> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(widget.borderRadius ?? 14.0),
       ),
-      padding: widget.padding ?? const EdgeInsets.symmetric(vertical: 18),
+      padding: widget.padding ?? const EdgeInsets.symmetric(vertical: 13),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -58,7 +58,7 @@ class _RoundedButtonState extends State<RoundedButton> {
 
   _validation() {
     if (widget.isLoading == false) {
-      return Text(widget.text, style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: _getColor(), letterSpacing: 1));
+      return Text(widget.text, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: _getColor(), letterSpacing: 1));
     } else {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -66,7 +66,7 @@ class _RoundedButtonState extends State<RoundedButton> {
           if (widget.isLoading == true)
             Text(
               widget.loadingText.toString(),
-              style: TextStyle(color: _getColor(), letterSpacing: 1,fontSize: 14,fontWeight: FontWeight.w500),
+              style: TextStyle(color: _getColor(), letterSpacing: 1, fontSize: 14, fontWeight: FontWeight.w500),
             ).paddingOnly(right: 10),
           const SizedBox(
             height: 18,

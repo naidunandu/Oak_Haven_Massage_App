@@ -89,7 +89,7 @@ class ScheduleChangeRequestView extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         autofillHints: const [AutofillHints.name],
                         suffixIcon: const Icon(
-                          Icons.calendar_today_rounded,
+                          Icons.calendar_today,
                           color: CustomColors.secondary,
                         ),
                         validator: (val) {
@@ -112,7 +112,7 @@ class ScheduleChangeRequestView extends StatelessWidget {
                           keyboardType: TextInputType.text,
                           autofillHints: const [AutofillHints.name],
                           suffixIcon: const Icon(
-                            Icons.calendar_today_rounded,
+                            Icons.access_time_rounded,
                             color: CustomColors.secondary,
                           ),
                           validator: (val) {
