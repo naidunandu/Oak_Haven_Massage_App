@@ -14,17 +14,15 @@ class TimelineWidget extends StatefulWidget {
 }
 
 class _TimelineWidgetState extends State<TimelineWidget> {
-
   Appointment? selectedAppointment;
 
   @override
   void initState() {
     super.initState();
-    if(widget.dataSource.appointments!.isNotEmpty){
+    if (widget.dataSource.appointments!.isNotEmpty) {
       selectedAppointment = widget.dataSource.appointments![0];
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +55,7 @@ class _TimelineWidgetState extends State<TimelineWidget> {
             showTodayButton: false,
             showDatePickerButton: false,
             showWeekNumber: false,
+            selectionDecoration: BoxDecoration(border: Border.all(color: Colors.transparent)),
             viewNavigationMode: ViewNavigationMode.none,
             headerHeight: 0,
             viewHeaderHeight: 0,
@@ -67,14 +66,13 @@ class _TimelineWidgetState extends State<TimelineWidget> {
               timeInterval: Duration(minutes: 30),
               timeFormat: 'h:mma',
             ),
-            onTap: (CalendarTapDetails details){
+            onTap: (CalendarTapDetails details) {
               if (details.appointments != null && details.appointments!.isNotEmpty) {
                 setState(() {
                   selectedAppointment = details.appointments!.first;
                 });
               }
-            }
-            ,
+            },
             appointmentBuilder: (context, details) {
               final Appointment appointment = details.appointments.first;
               return Container(
@@ -82,6 +80,10 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   color: appointment.color,
+                  border: Border.all(
+                    color: selectedAppointment!.startTime == appointment.startTime ? Colors.black : Colors.white,
+                    width: 2
+                  ),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Column(
