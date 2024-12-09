@@ -7,7 +7,7 @@ import 'package:oak_haven_massage_app/utils/constants.dart';
 import '../models/network_response.dart';
 import '../utils/storage.dart';
 import '../utils/toast.dart';
-import 'network_config.dart';
+import 'app_network_config.dart';
 
 Dio dio = Dio();
 
