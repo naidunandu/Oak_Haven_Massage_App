@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:oak_haven_massage_app/network/api_manager.dart';
 import 'package:oak_haven_massage_app/routes/route_name.dart';
 import 'package:oak_haven_massage_app/utils/helper.dart';
 import 'package:oak_haven_massage_app/utils/toast.dart';
+
+import '../../models/network_response.dart';
+import '../../utils/endpoints.dart';
 
 class LoginController extends GetxController {
   TextEditingController txtEmail = TextEditingController();
@@ -24,7 +28,14 @@ class LoginController extends GetxController {
     try {
       if (Helper().isEmailValidation(txtEmail.text) == true) {
         isLoadingStart();
-        Get.toNamed(RouteNames.otp);
+        Map<String, String> request = {
+          "phone": "",
+          "phonewithCountryCode": ""
+        };
+        APIResponse response = await ApiManager().call(Endpoints.login, request, ApiType.post);
+        if(response.success){
+          Get.toNamed(RouteNames.otp);
+        }
       } else {
         txtEmail.text = "";
         update();
@@ -36,3 +47,4 @@ class LoginController extends GetxController {
     }
   }
 }
+
