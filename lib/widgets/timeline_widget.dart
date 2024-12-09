@@ -14,6 +14,18 @@ class TimelineWidget extends StatefulWidget {
 }
 
 class _TimelineWidgetState extends State<TimelineWidget> {
+
+  Appointment? selectedAppointment;
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.dataSource.appointments!.isNotEmpty){
+      selectedAppointment = widget.dataSource.appointments![0];
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,21 +51,30 @@ class _TimelineWidgetState extends State<TimelineWidget> {
             view: CalendarView.day,
             dataSource: widget.dataSource,
             showNavigationArrow: false,
-            initialSelectedDate: widget.currentDate,
-            initialDisplayDate: widget.currentDate,
-            showCurrentTimeIndicator: true,
+            initialSelectedDate: selectedAppointment?.startTime,
+            showCurrentTimeIndicator: false,
+            allowViewNavigation: false,
             showTodayButton: false,
             showDatePickerButton: false,
             showWeekNumber: false,
             viewNavigationMode: ViewNavigationMode.none,
             headerHeight: 0,
             viewHeaderHeight: 0,
+            onSelectionChanged: null,
             timeSlotViewSettings: const TimeSlotViewSettings(
               startHour: 9,
               endHour: 21,
               timeInterval: Duration(minutes: 30),
               timeFormat: 'h:mma',
             ),
+            onTap: (CalendarTapDetails details){
+              if (details.appointments != null && details.appointments!.isNotEmpty) {
+                setState(() {
+                  selectedAppointment = details.appointments!.first;
+                });
+              }
+            }
+            ,
             appointmentBuilder: (context, details) {
               final Appointment appointment = details.appointments.first;
               return Container(
